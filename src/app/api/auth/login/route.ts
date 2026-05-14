@@ -28,7 +28,8 @@ export async function POST(req: Request) {
     await setSession(user.id);
 
     return NextResponse.json({ success: true, user: { id: user.id, email: user.email, name: user.name } });
-  } catch (error) {
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  } catch (error: any) {
+    console.error("Login error:", error);
+    return NextResponse.json({ error: error.message || "Internal server error" }, { status: 500 });
   }
 }
