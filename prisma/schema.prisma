@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  notes     Note[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Note {
+  id              String   @id @default(cuid())
+  title           String   @default("Untitled")
+  content         String   @default("")
+  tags            String   @default("[]") // JSON string of tags
+  isPublic        Boolean  @default(false)
+  shareId         String?  @unique
+  
+  // AI Generated Content
+  summary         String?
+  actionItems     String?  // JSON string of items
+  suggestedTitle  String?
+
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
