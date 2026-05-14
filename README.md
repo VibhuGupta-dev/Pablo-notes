@@ -30,27 +30,33 @@ A lightweight, collaborative, AI-powered notes workspace built for the Peblo ful
 ### Installation
 
 1. **Clone the repository:**
-   \`\`\`bash
-   git clone <repository-url>
-   cd peblo-notes
-   \`\`\`
+   ```bash
+   git clone https://github.com/VibhuGupta-dev/Pablo-notes
+   cd Pablo-notes
+   ```
 
 2. **Install dependencies:**
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 
 3. **Configure Environment Variables:**
-   Copy the example environment file and fill in your Gemini API key.
-   \`\`\`bash
-   cp .env.example .env
-   \`\`\`
-   Edit `.env` and add your `LLM_API_KEY`.
+   Create a `.env` file in the root of your project based on the `.env.example` file provided:
+   
+   ```env
+   # .env.example
+   DATABASE_URL="file:./dev.db"
+   JWT_SECRET="your-jwt-secret-here"
+   LLM_API_KEY="your-google-gemini-api-key-here"
+   NEXT_PUBLIC_APP_URL="https://your-production-url.vercel.app"
+   ```
+   
+   Copy this into `.env` and replace `your-google-gemini-api-key-here` with your actual Gemini API key.
 
 4. **Initialize the Database:**
-   \`\`\`bash
+   ```bash
    npx prisma db push
-   \`\`\`
+   ```
 
 5. **Start the Development Server:**
    \`\`\`bash
